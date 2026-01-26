@@ -1,0 +1,12 @@
+-ExecutionPolicy Bypass -File "C:\Scheduled Tasks\teamsHistoricalRunner\teamsHistoricalRunner.ps1"
+
+C:\Scheduled Tasks\teamsHistoricalRunner
+
+-NoProfile -NonInteractive -ExecutionPolicy Bypass -Command "Get-Date | Out-File -Append C:\ScheduledTasks\TaskProof.txt"
+
+-NoProfile -NonInteractive -ExecutionPolicy Bypass -File "C:\ScheduledTasks\teamsHistoricalRunner\teamsHistoricalRunner.ps1 -CustomerId "8fa12c9e47bd30f1e6a9427b" -CustomerInitials "KITS" -UseDistributionLists true -UseDistributionListsEmails "dl-demo-mgmt01-Teams-Runner@kaizenitsolutions.io"
+
+
+-NoProfile -NonInteractive -ExecutionPolicy Bypass -Command "& 'C:\ScheduledTasks\teamsHistoricalRunner\teamsHistoricalRunner.ps1' -CustomerId '8fa12c9e47bd30f1e6a9427b' -CustomerInitials 'KITS' -UseDistributionLists "true" -UseDistributionListsEmails 'dl-demo-mgmt01-Teams-Runner@kaizenitsolutions.io' *>> 'C:\ScheduledTasks\teamsHistoricalRunner\teamsHistoricalRunner.task.log'; exit $LASTEXITCODE"
+
+-NoProfile -NonInteractive -ExecutionPolicy Bypass -Command "& 'C:\ScheduledTasks\app_sp_archive_and_upload_spo-dev\app_sp_archive_and_upload_spo-dev.ps1' *>> 'C:\ScheduledTasks\app_sp_archive_and_upload_spo-dev\app_sp_archive_and_upload_spo-dev.task.log'; exit $LASTEXITCODE"
