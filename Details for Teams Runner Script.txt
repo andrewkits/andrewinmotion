@@ -9,4 +9,33 @@ C:\Scheduled Tasks\teamsHistoricalRunner
 
 -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command "& 'C:\ScheduledTasks\teamsHistoricalRunner\teamsHistoricalRunner.ps1' -CustomerId '8fa12c9e47bd30f1e6a9427b' -CustomerInitials 'KITS' -UseDistributionLists "true" -UseDistributionListsEmails 'dl-demo-mgmt01-Teams-Runner@kaizenitsolutions.io' *>> 'C:\ScheduledTasks\teamsHistoricalRunner\teamsHistoricalRunner.task.log'; exit $LASTEXITCODE"
 
+
 -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command "& 'C:\ScheduledTasks\app_sp_archive_and_upload_spo-dev\app_sp_archive_and_upload_spo-dev.ps1' *>> 'C:\ScheduledTasks\app_sp_archive_and_upload_spo-dev\app_sp_archive_and_upload_spo-dev.task.log'; exit $LASTEXITCODE"
+
+Entries needed to register credentials locally on device that script will be run on:
+
+# Add Client ID
+New-StoredCredential -Target "TeamsApp_TenantId" -UserName "TeamsApp_TenantId" -Password "BLANK" -Type Generic -Persist LocalMachine 
+
+# Add Client ID
+New-StoredCredential -Target "TeamsApp_ClientId" -UserName "TeamsApp_ClientId" -Password "BLANK" -Type Generic -Persist LocalMachine
+
+# Add Client Secret
+New-StoredCredential -Target "TeamsApp_ClientSecret" -UserName "TeamsApp_ClientSecret" -Password "BLANK" -Type Generic -Persist LocalMachine
+
+
+Command needed to run main script (run from same directory as script):
+
+.\teamsHistoricalRunner.ps1 -CustomerId "BLANK" -CustomerInitials "BLANK" -UseDistributionLists true -UseDistributionListsEmails  "BLANK"
+
+
+Command needed to run secondary script (run from same directory as script):
+
+.\app_sp_archive_and_upload_spo\app_sp_archive_and_upload_spo.ps1
+
+
+The following details are for TESTING PURPOSES ONLY (are hardcoded within the script):
+
+QA SharePoint site used for testing: https://BLANK.sharepoint.com/sites/BLANK
+Output file is uploaded to "Documents\BLANK"
+Main script generates the output file to the default location (.\teamsHistoricalRunner\local-output\BLANK\teamsHistoricalRunner\), the secondary script will upload the output file and archive a local copy (.\teamsHistoricalRunner\Archive\)
